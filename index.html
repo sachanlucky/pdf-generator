@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free PDF Generator</title>
+</head>
+<body>
+    <h1>Generate PDF Document</h1>
+    <form id="pdfForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <button type="button" onclick="generatePDF()">Generate PDF</button>
+    </form>
+
+    <!-- Include jsPDF from CDN for free -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script>
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Get input values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+
+            // Add text to the PDF
+            doc.text("Generated PDF Document", 20, 20);
+            doc.text(`Name: ${name}`, 20, 40);
+            doc.text(`Email: ${email}`, 20, 60);
+
+            // Save the PDF
+            doc.save("GeneratedDocument.pdf");
+        }
+    </script>
+</body>
+</html>
